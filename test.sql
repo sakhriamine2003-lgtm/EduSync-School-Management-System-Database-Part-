@@ -51,10 +51,49 @@ CREATE TABLE enrollments (
 
 
 -- pour  users/roles
-ALTER Table users ADD 
-    role_id INT NOT NULL ;
-ALTER Table users ADD  Foreign Key (role_id) REFERENCES roles(id) ;
+ALTER Table users ADD  role_id INT NOT NULL ;
+ALTER TABLE courses ADD id_user INT  ;
+ALTER TABLE  students ADD id_user INT ;
+ALTER TABLE classes ADD student_id INT ;
+ALTER TABLE enrollments ADD student_id  INT , ADD cours_id INT ;
 
+
+
+
+
+
+ALTER Table users ADD  Foreign Key (role_id) REFERENCES roles(id) ;
+ALTER TABLE courses ADD Foreign Key (id_user) REFERENCES users(id) ;
+
+ALTER TABLE students ADD Foreign Key (id_user) REFERENCES users(id) ;
+
+ALTER TABLE classes ADD Foreign Key (student_id) REFERENCES students(id) ;
+
+ALTER TABLE enrollments ADD Foreign Key (student_id ) REFERENCES students(id) ,
+ ADD Foreign Key (cours_id) REFERENCES courses(id) ;
+
+
+
+
+
+
+
+
+
+
+
+    
+  
+
+
+
+
+
+
+
+
+
+-- pour users/students :
 
 
 
